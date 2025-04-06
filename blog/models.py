@@ -2,6 +2,12 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return (
+            super().get_queryset().filter(status='PUBLISHED')
+        )
+
 class Post(models.Model):
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Чорновик'
@@ -23,6 +29,8 @@ class Post(models.Model):
         choices=Status,
         default=Status.DRAFT,
     )
+    objects = models.Manager()
+    published = PublishedManager()
 
     class Meta:
         ordering = ['-publish']
