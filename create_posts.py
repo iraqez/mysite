@@ -10,4 +10,4 @@ def lorPost(x, y):
         Post(title='Тестовий пост №'+str(i), slug='post-from-shell'+str(i), body=lor, author=user, status='PB').save()
 
 if __name__ == '__main__':
-    lorPost(1, 10)
+    lorPost(1, 40)
