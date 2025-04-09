@@ -2,12 +2,13 @@ from django import forms
 from .models import Comment
 
 class EmailPostForm(forms.Form):
-    name = forms.CharField(max_length=25)
+    name = forms.CharField(max_length=25, label="Ім'я")
     email = forms.EmailField()
-    to = forms.EmailField()
+    to = forms.EmailField(label="Кому")
     comments = forms.CharField(
         required=False,
-        widget=forms.Textarea
+        widget=forms.Textarea,
+        label = "Коментар",
     )
 
 class CommentForm(forms.ModelForm):

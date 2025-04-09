@@ -11,4 +11,21 @@
         Поділитись поштою
     </a>
     </p>
+    {% with comments.count as total_comments %}
+        <h2>
+        {{ total_comments }} коментарів {{ total_comments|pluralize }}
+        </h2>
+    {% endwith %}
+    {% for comment in comments %}
+        <div class="comment">
+        <p class="info">
+            Коментар {{ forloop.counter }} від {{ comment.name }}
+            {{ comment.created }}
+        </p>
+        {{ comment.body|linebreaks }}
+        </div>
+        {% empty %}
+        <p>Коментарів немає</p>
+    {% endfor %}
+    {% include "blog/post/includes/comment_form.html" %}
 {% endblock %}
